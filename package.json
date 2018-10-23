@@ -72,6 +72,10 @@
     "yoshi": "^3.0.0",
     "yoshi-style-dependencies": "^3.0.0"
   },
+  "publishConfig": {
+    "logLevel": "verbose",
+    "registry": "https://registry.npmjs.org/"
+  },
   "lint-staged": {
     "*.tsx": [
       "prettier --write",
