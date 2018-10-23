@@ -1,6 +1,6 @@
 {
   "name": "react-playable",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "React wrapper for playable",
   "keywords": [
     "react",
@@ -36,7 +36,6 @@
     "posttest": "yoshi lint",
     "start": "yoshi start & npm run storybook",
     "build": "yoshi build",
-    "release": "yoshi release && teamcity-surge-autorelease --dist=storybook-static",
     "pr-release": "teamcity-surge-autorelease --dist=storybook-static",
     "storybook": "start-storybook -p 6006"
   },
