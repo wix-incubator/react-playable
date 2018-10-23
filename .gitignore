@@ -1,0 +1,17 @@
+dist
+node_modules
+target
+.idea
+.DS_Store
+.rpt2_cache
+yarn-error.log
+package-lock.json
+story
+coverage
+maven
+.history
+test/e2e/screenshots
+*.iml
+storybook-static
+storybook-e2e
+.yo-rc.json

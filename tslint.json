@@ -1,0 +1,48 @@
+{
+  "extends": [
+    "tslint-eslint-rules"
+  ],
+  "rules": {
+    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
+    "no-conditional-assignment": true,
+    "no-console": true,
+    "no-constant-condition": true, // tslint-eslint-rules
+    "no-debugger": true,
+    "no-duplicate-case": true, // tslint-eslint-rules
+    "no-empty": [true, "allow-empty-catch"],
+    "no-empty-character-class": true, // tslint-eslint-rules
+    "no-ex-assign": true, // tslint-eslint-rules
+    "no-extra-boolean-cast": true, // tslint-eslint-rules
+    "no-inner-declarations": [true, "both"], // tslint-eslint-rules
+    "no-invalid-regexp": true, // tslint-eslint-rules
+    "no-regex-spaces": true, // tslint-eslint-rules
+    "use-isnan": true,
+    "valid-typeof": true, // tslint-eslint-rules
+    "cyclomatic-complexity": true,
+    "curly": [true, "all"],
+    "switch-default": true,
+    "no-string-literal": true,
+    "triple-equals": [true, "smart"],
+    "forin": true,
+    "ban": true,
+    "no-arg": true,
+    "no-eval": true,
+    "no-switch-case-fall-through": true,
+    "no-invalid-this": true,
+    "no-sparse-arrays": true,
+    "label-position": true,
+    "no-construct": true,
+    "no-unused-expression": [true, "allow-fast-null-checks"],
+    "no-duplicate-variable": true,
+    "no-string-throw": true,
+    "radix": true,
+    "no-unused-variable": true,
+    "no-use-before-declare": true,
+    "no-var-keyword": true,
+    "object-literal-shorthand": [true, "always"],
+    "prefer-const": true,
+    "jsdoc-format": [true, "check-multiline-start"],
+    "no-redundant-jsdoc": false,
+    "no-shadowed-variable": true
+  }
+}
