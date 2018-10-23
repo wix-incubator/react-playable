@@ -32,7 +32,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "pretest": "yoshi build && build-storybook",
-    "test": "yoshi test",
+    "test": "",
     "posttest": "yoshi lint",
     "start": "yoshi start & npm run storybook",
     "build": "yoshi build",
