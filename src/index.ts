@@ -1,1 +1,5 @@
-export { ReactPlayable, ReactPlayableProps } from './components/ReactPlayable';
+import { ReactPlayable, ReactPlayableProps } from './components/ReactPlayable';
+
+export { ReactPlayable, ReactPlayableProps };
+export default ReactPlayable;
+
