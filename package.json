@@ -17,12 +17,12 @@
   "license": "MIT",
   "homepage": "https://github.com/wix-incubator/react-playable",
   "bugs": {
-    "url": "https://github.com/BrooklynKing/react-playable/issues",
+    "url": "https://github.com/wix-incubator/react-playable/issues",
     "email": "oleksiim@wix.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:BrooklynKing/react-playable.git"
+    "url": "git@github.com:wix-incubator/react-playable.git"
   },
   "main": "dist/src/index.js",
   "files": [
