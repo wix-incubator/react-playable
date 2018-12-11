@@ -12,13 +12,13 @@ npm install react-playable
 ```javascrpt
 import ReactPlayable from 'react-playable';
 
-functon App() {
+function App() {
   return (
     <ReactPlayable
       width={760}
       height={428}
       title="MY VIDEO!"
-      src="http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_10mb.mp4"
+      src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
     />
   );
 }
