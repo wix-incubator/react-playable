@@ -25,3 +25,5 @@ function App() {
 ```
 
 > See code for component props datails
+
+You can play with demo [here](https://codesandbox.io/s/zqlwywrp34)
