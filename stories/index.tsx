@@ -8,6 +8,6 @@ storiesOf('ReactPlayable', module).add('default view', () => (
     width={760}
     height={428}
     title="MY VIDEO!"
-    src="http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_10mb.mp4"
+    src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
   />
 ));

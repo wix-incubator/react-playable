@@ -4,22 +4,44 @@ import * as ReactDOM from 'react-dom';
 import {
   bool,
   array,
+  arrayOf,
   number,
   string,
   func,
   oneOfType,
   object,
   shape,
+  exact,
 } from 'prop-types';
 
 import {
   create,
   registerModule,
   registerPlaybackAdapter,
-  IPlayer,
-  MediaSource,
   //@ts-ignore
 } from 'playable';
+
+interface IState {
+  isMounted: boolean;
+}
+
+interface IExtendedStatelessComponent extends React.StatelessComponent {
+  dependencies?: string[];
+}
+
+interface IExtendedComponent extends React.ComponentClass {
+  dependencies?: string[];
+}
+
+interface IMediaSourceObject {
+  url: string;
+  type?: string;
+}
+
+type MediaSource =
+  | string
+  | IMediaSourceObject
+  | Array<string | IMediaSourceObject>;
 
 export interface ReactPlayableProps {
   config?: {
@@ -48,18 +70,6 @@ export interface ReactPlayableProps {
   onInit?: (player: any) => {};
 }
 
-interface IState {
-  isMounted: boolean;
-}
-
-interface IExtendedStatelessComponent extends React.StatelessComponent {
-  dependencies?: string[];
-}
-
-interface IExtendedComponent extends React.ComponentClass {
-  dependencies?: string[];
-}
-
 export class ReactPlayable extends React.PureComponent<
   ReactPlayableProps,
   IState
@@ -69,7 +79,22 @@ export class ReactPlayable extends React.PureComponent<
     height: number, // Height of player
     fillAllSpace: bool, // Alow player to fill all available space
 
-    src: oneOfType([string, array]), // Same as in playable
+    src: oneOfType([
+      string,
+      exact({
+        url: string,
+        type: string,
+      }),
+      arrayOf(
+        oneOfType([
+          string,
+          exact({
+            url: string,
+            type: string,
+          }),
+        ]),
+      ),
+    ]), // Same as in playable
 
     title: string,
     poster: string,
@@ -90,7 +115,7 @@ export class ReactPlayable extends React.PureComponent<
     onInit: func,
   };
 
-  private _player: IPlayer;
+  private _player: any;
   private _$wrapper: HTMLElement;
 
   constructor(props: ReactPlayableProps) {

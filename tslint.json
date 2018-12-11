@@ -1,9 +1,7 @@
 {
-  "extends": [
-    "tslint-eslint-rules"
-  ],
+  "extends": ["tslint-eslint-rules"],
   "rules": {
-    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
+    "trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
     "no-conditional-assignment": true,
     "no-console": true,
     "no-constant-condition": true, // tslint-eslint-rules
@@ -36,7 +34,6 @@
     "no-duplicate-variable": true,
     "no-string-throw": true,
     "radix": true,
-    "no-unused-variable": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-shorthand": [true, "always"],

@@ -35,6 +35,7 @@
     "pretest": "yoshi build && build-storybook",
     "test": "",
     "posttest": "yoshi lint",
+    "postversion": "git push && git push --tags",
     "start": "yoshi start & npm run storybook",
     "build": "yoshi build",
     "storybook": "start-storybook -p 6006"
