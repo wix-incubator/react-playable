@@ -47,7 +47,7 @@ export interface ReactPlayableProps {
   config?: {
     modules?: any;
     playbackAdapters?: any[];
-
+    autoplay?: boolean;
     hideMainUI?: boolean;
     hideOverlay?: boolean;
     disableControlWithKeyboard?: boolean;
@@ -102,6 +102,7 @@ export class ReactPlayable extends React.PureComponent<
     texts: object,
 
     config: shape({
+      autoplay: bool,
       modules: object,
       playbackAdapters: array,
       hideMainUI: bool,
@@ -146,6 +147,7 @@ export class ReactPlayable extends React.PureComponent<
         nativeBrowserControls = false,
         hideMainUI = false,
         hideOverlay = false,
+        autoplay = false,
       } = {},
       onInit,
     } = this.props;
@@ -154,6 +156,7 @@ export class ReactPlayable extends React.PureComponent<
     this.registerPlaybackAdapters(playbackAdapters);
 
     this._player = create({
+      autoplay,
       width,
       height,
       fillAllSpace,
