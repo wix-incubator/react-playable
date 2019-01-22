@@ -17,7 +17,7 @@ storiesOf('ReactPlayable', module)
       width={760}
       height={428}
       title="MY VIDEO!"
-      config={{ autoplay: true }}
+      autoplay
       src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
     />
   ));
