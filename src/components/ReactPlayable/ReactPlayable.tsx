@@ -68,7 +68,7 @@ export interface ReactPlayableProps {
 
   texts?: any;
 
-  onInit?: (player: any) => {};
+  onInit?(player: any): void;
 }
 
 export class ReactPlayable extends React.PureComponent<
