@@ -47,7 +47,6 @@ export interface ReactPlayableProps {
   config?: {
     modules?: any;
     playbackAdapters?: any[];
-
     hideMainUI?: boolean;
     hideOverlay?: boolean;
     disableControlWithKeyboard?: boolean;
@@ -61,6 +60,8 @@ export interface ReactPlayableProps {
   fillAllSpace?: boolean;
 
   src?: MediaSource;
+
+  autoplay?: boolean;
 
   title?: string;
   poster?: string;
@@ -96,9 +97,10 @@ export class ReactPlayable extends React.PureComponent<
       ),
     ]), // Same as in playable
 
+    autoplay: bool,
+
     title: string,
     poster: string,
-
     texts: object,
 
     config: shape({
@@ -133,6 +135,8 @@ export class ReactPlayable extends React.PureComponent<
       fillAllSpace = false,
 
       src,
+      autoplay = false,
+
       title,
       poster,
 
@@ -154,6 +158,7 @@ export class ReactPlayable extends React.PureComponent<
     this.registerPlaybackAdapters(playbackAdapters);
 
     this._player = create({
+      autoplay,
       width,
       height,
       fillAllSpace,
