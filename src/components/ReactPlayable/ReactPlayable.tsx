@@ -1,5 +1,6 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactIs from 'react-is';
+import ReactDOM from 'react-dom';
 
 import {
   bool,
@@ -235,16 +236,20 @@ export class ReactPlayable extends React.PureComponent<
 
     return React.Children.map(children, child => {
       if (
-        !child ||
+        typeof child === 'boolean' ||
         typeof child === 'string' ||
         typeof child === 'number' ||
-        typeof child.type === 'string'
+        ReactIs.isFragment(child) ||
+        typeof (child as React.ReactElement<any>).type === 'string'
       ) {
         return child;
       }
 
-      const constructor: IExtendedComponent | IExtendedStatelessComponent =
-        child.type;
+      const constructor:
+        | IExtendedComponent
+        | IExtendedStatelessComponent = (child as React.ReactComponentElement<
+        any
+      >).type;
 
       if (constructor.dependencies) {
         const modules = constructor.dependencies.reduce(
@@ -258,7 +263,10 @@ export class ReactPlayable extends React.PureComponent<
           },
           {},
         );
-        return React.cloneElement(child, modules);
+        return React.cloneElement(
+          child as React.ReactComponentElement<any>,
+          modules,
+        );
       }
 
       return child;

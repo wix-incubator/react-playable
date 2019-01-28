@@ -46,7 +46,8 @@
     "react-dom": ">=16.1.0"
   },
   "dependencies": {
-    "playable": "^2.0.0"
+    "playable": "^2.0.0",
+    "react-is": "^16.7.0"
   },
   "devDependencies": {
     "@storybook/react": "^4.0.0-alpha.0",
@@ -57,9 +58,10 @@
     "@types/prop-types": "~15.5.0",
     "@types/react": "^16.7.20",
     "@types/react-dom": "^16.0.11",
+    "@types/react-is": "^16.7.0",
     "chai": "^4.1.0",
-    "gh-pages": "^1.2.0",
     "enzyme": "^2.9.0",
+    "gh-pages": "^1.2.0",
     "husky": "~0.14.0",
     "jsdom": "~11.1.0",
     "lint-staged": "^7.2.2",
