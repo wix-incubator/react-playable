@@ -44,6 +44,17 @@ type MediaSource =
   | IMediaSourceObject
   | Array<string | IMediaSourceObject>;
 
+const PropertyToMethodMap: { [parameter: string]: string } = {
+  autoplay: 'setAutoplay',
+  preload: 'setPreload',
+  width: 'setWidth',
+  height: 'setHeight',
+  fillAllSpace: 'setFillAllSpace',
+  src: 'setSrc',
+  title: 'setTitle',
+  poster: 'setPoster',
+};
+
 export interface ReactPlayableProps {
   config?: {
     modules?: any;
@@ -63,6 +74,7 @@ export interface ReactPlayableProps {
   src?: MediaSource;
 
   autoplay?: boolean;
+  preload?: string;
 
   title?: string;
   poster?: string;
@@ -99,6 +111,7 @@ export class ReactPlayable extends React.PureComponent<
     ]), // Same as in playable
 
     autoplay: bool,
+    preload: string,
 
     title: string,
     poster: string,
@@ -137,6 +150,7 @@ export class ReactPlayable extends React.PureComponent<
 
       src,
       autoplay = false,
+      preload = 'auto',
 
       title,
       poster,
@@ -160,6 +174,7 @@ export class ReactPlayable extends React.PureComponent<
 
     this._player = create({
       autoplay,
+      preload,
       width,
       height,
       fillAllSpace,
@@ -185,31 +200,19 @@ export class ReactPlayable extends React.PureComponent<
   }
 
   componentDidUpdate(prevProps: ReactPlayableProps) {
-    const { width, height, fillAllSpace, src, title, poster } = this.props;
+    Object.keys(this.props).forEach((property: string) => {
+      const method =
+        PropertyToMethodMap[property] &&
+        this._player[PropertyToMethodMap[property]];
 
-    if (width !== prevProps.width) {
-      this._player.setWidth(width);
-    }
-
-    if (height !== prevProps.height) {
-      this._player.setHeight(height);
-    }
-
-    if (fillAllSpace !== prevProps.fillAllSpace) {
-      this._player.setFillAllSpace(fillAllSpace);
-    }
-
-    if (src !== prevProps.src) {
-      this._player.setSrc(src);
-    }
-
-    if (title !== prevProps.title) {
-      this._player.setTitle(title);
-    }
-
-    if (poster !== prevProps.poster) {
-      this._player.setPoster(poster);
-    }
+      if (method) {
+        const newValue: any = (this.props as any)[property];
+        const oldValue: any = (prevProps as any)[property];
+        if (newValue !== oldValue) {
+          method(newValue);
+        }
+      }
+    });
   }
 
   componentWillUnmount() {
