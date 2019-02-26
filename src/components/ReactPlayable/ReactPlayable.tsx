@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactIs from 'react-is';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import * as ReactIs from 'react-is';
 
 import {
   bool,
