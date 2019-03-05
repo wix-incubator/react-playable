@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import * as ReactIs from 'react-is';
 
 import {
+  Requireable,
   bool,
   array,
   arrayOf,
@@ -13,9 +14,20 @@ import {
   object,
   shape,
   exact,
+  oneOf,
 } from 'prop-types';
 
-import { create, registerModule, registerPlaybackAdapter } from 'playable';
+import {
+  create,
+  registerModule,
+  registerPlaybackAdapter,
+  IPlayerInstance,
+  MEDIA_STREAM_TYPES,
+  PlayableMediaSource,
+  PRELOAD_TYPES,
+} from 'playable';
+
+const MediaStreamType: Requireable<MEDIA_STREAM_TYPES> = null;
 
 interface IState {
   isMounted: boolean;
@@ -28,16 +40,6 @@ interface IExtendedStatelessComponent extends React.StatelessComponent {
 interface IExtendedComponent extends React.ComponentClass {
   dependencies?: string[];
 }
-
-interface IMediaSourceObject {
-  url: string;
-  type?: string;
-}
-
-type MediaSource =
-  | string
-  | IMediaSourceObject
-  | Array<string | IMediaSourceObject>;
 
 const PropertyToMethodMap: { [parameter: string]: string } = {
   autoplay: 'setAutoplay',
@@ -66,17 +68,17 @@ export interface ReactPlayableProps {
   height?: number;
   fillAllSpace?: boolean;
 
-  src?: MediaSource;
+  src?: PlayableMediaSource;
 
   autoplay?: boolean;
-  preload?: string;
+  preload?: PRELOAD_TYPES;
 
   title?: string;
   poster?: string;
 
   texts?: any;
 
-  onInit?(player: any): void;
+  onInit?(player: IPlayerInstance): void;
 }
 
 export class ReactPlayable extends React.PureComponent<
@@ -92,21 +94,25 @@ export class ReactPlayable extends React.PureComponent<
       string,
       exact({
         url: string,
-        type: string,
+        type: MediaStreamType,
       }),
       arrayOf(
         oneOfType([
           string,
           exact({
             url: string,
-            type: string,
+            type: MediaStreamType,
           }),
         ]),
       ),
     ]), // Same as in playable
 
     autoplay: bool,
-    preload: string,
+    preload: oneOf([
+      PRELOAD_TYPES.AUTO,
+      PRELOAD_TYPES.METADATA,
+      PRELOAD_TYPES.NONE,
+    ]),
 
     title: string,
     poster: string,
@@ -126,7 +132,7 @@ export class ReactPlayable extends React.PureComponent<
     onInit: func,
   };
 
-  private _player: any;
+  private _player: IPlayerInstance;
   private _$wrapper: HTMLElement;
 
   constructor(props: ReactPlayableProps) {
@@ -145,7 +151,7 @@ export class ReactPlayable extends React.PureComponent<
 
       src,
       autoplay = false,
-      preload = 'auto',
+      preload = PRELOAD_TYPES.AUTO,
 
       title,
       poster,
@@ -198,7 +204,7 @@ export class ReactPlayable extends React.PureComponent<
     Object.keys(this.props).forEach((property: string) => {
       const method =
         PropertyToMethodMap[property] &&
-        this._player[PropertyToMethodMap[property]];
+        (this._player as any)[PropertyToMethodMap[property]];
 
       if (method) {
         const newValue: any = (this.props as any)[property];

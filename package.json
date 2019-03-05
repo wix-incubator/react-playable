@@ -41,12 +41,12 @@
     "storybook": "start-storybook -p 6006"
   },
   "peerDependencies": {
-    "playable": ">=2.0.0",
+    "playable": ">=2.5.1",
     "react": ">=16.1.0",
     "react-dom": ">=16.1.0"
   },
   "dependencies": {
-    "playable": "^2.0.0",
+    "playable": "^2.5.1",
     "react-is": "^16.7.0"
   },
   "devDependencies": {
