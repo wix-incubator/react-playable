@@ -15,12 +15,7 @@ import {
   exact,
 } from 'prop-types';
 
-import {
-  create,
-  registerModule,
-  registerPlaybackAdapter,
-  //@ts-ignore
-} from 'playable';
+import { create, registerModule, registerPlaybackAdapter } from 'playable';
 
 interface IState {
   isMounted: boolean;
