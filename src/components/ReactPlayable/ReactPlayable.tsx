@@ -27,7 +27,10 @@ import {
   PRELOAD_TYPES,
 } from 'playable';
 
-const MediaStreamType: Requireable<MEDIA_STREAM_TYPES> = null;
+const PlayableSource = exact({
+  url: string,
+  type: string as Requireable<MEDIA_STREAM_TYPES>,
+});
 
 interface IState {
   isMounted: boolean;
@@ -92,19 +95,8 @@ export class ReactPlayable extends React.PureComponent<
 
     src: oneOfType([
       string,
-      exact({
-        url: string,
-        type: MediaStreamType,
-      }),
-      arrayOf(
-        oneOfType([
-          string,
-          exact({
-            url: string,
-            type: MediaStreamType,
-          }),
-        ]),
-      ),
+      PlayableSource,
+      arrayOf(oneOfType([string, PlayableSource])),
     ]), // Same as in playable
 
     autoplay: bool,
