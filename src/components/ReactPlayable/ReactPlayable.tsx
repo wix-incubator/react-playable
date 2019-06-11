@@ -25,7 +25,7 @@ import {
   MEDIA_STREAM_TYPES,
   PlayableMediaSource,
   PRELOAD_TYPES,
-} from 'playable';
+} from 'playable/dist/src/index';
 
 const PlayableSource = exact({
   url: string,
