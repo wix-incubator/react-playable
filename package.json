@@ -70,7 +70,7 @@
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-test-renderer": "~16.5.1",
-    "typescript": "~3.0.1",
+    "typescript": "^3.1.6",
     "yoshi": "^3.0.0",
     "yoshi-style-dependencies": "^3.0.0"
   },
