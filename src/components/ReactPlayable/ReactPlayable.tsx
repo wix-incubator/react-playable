@@ -46,6 +46,7 @@ interface IExtendedComponent extends React.ComponentClass {
 
 const PropertyToMethodMap: { [parameter: string]: string } = {
   autoplay: 'setAutoplay',
+  muted: 'setMuted',
   preload: 'setPreload',
   width: 'setWidth',
   height: 'setHeight',
@@ -74,6 +75,7 @@ export interface ReactPlayableProps {
   src?: PlayableMediaSource;
 
   autoplay?: boolean;
+  muted?: boolean;
   preload?: PRELOAD_TYPES;
 
   title?: string;
@@ -100,6 +102,7 @@ export class ReactPlayable extends React.PureComponent<
     ]), // Same as in playable
 
     autoplay: bool,
+    muted: bool,
     preload: oneOf([
       PRELOAD_TYPES.AUTO,
       PRELOAD_TYPES.METADATA,
@@ -143,6 +146,7 @@ export class ReactPlayable extends React.PureComponent<
 
       src,
       autoplay = false,
+      muted = false,
       preload = PRELOAD_TYPES.AUTO,
 
       title,
@@ -167,6 +171,7 @@ export class ReactPlayable extends React.PureComponent<
 
     this._player = create({
       autoplay,
+      muted,
       preload,
       width,
       height,
